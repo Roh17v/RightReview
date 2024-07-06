@@ -19,7 +19,6 @@ router.post("/signout", function(req, res) {
 router.post("/signup", async function(req, res) {
     const { email, username, password } = req.body
     const hashed = await hash(password, genSaltSync(+process.env.SALT!))
-    console.log(hashed)
     const user = await createNewUser({
         email,
         username,
