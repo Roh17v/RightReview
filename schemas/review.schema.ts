@@ -5,12 +5,10 @@ const reviewSchema = new Schema({
     body: {
         type: String,
         required: true,
-        text: true,
     },
     product: {
         type: String,
         required: true,
-        text: true,
     },
     rating: {
         type: Number,
@@ -22,5 +20,6 @@ const reviewSchema = new Schema({
         ref: USERS
     }
 }, { timestamps: true })
+reviewSchema.index({ body: 1, product: 1 })
 
 export const Review = model(REVIEWS, reviewSchema)
