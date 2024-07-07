@@ -10,7 +10,12 @@ export async function createReview(data: CreateReviewDto) {
 export async function getReviews(filter: GetReviewFilter) {
     const sort = filter.sort === "date" ? "createdAt" : "rating"
     const page = (filter.page - 1) * MAX_ITEMS
-    const reviews = await Review.find()
+    const query = filter.query !== '' ? {
+        $text: {
+            $search: filter.query
+        }
+    } : {}
+    const reviews = await Review.find(query)
     .sort(`-${sort}`)
     .skip(page)
     .limit(MAX_ITEMS)
