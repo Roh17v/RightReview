@@ -1,6 +1,10 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { AuthContext } from "../contexts/AuthContext"
+import { Navigate } from "react-router-dom"
 
 export default function SignInPage() {
+    const { user } = useContext(AuthContext)
+
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
@@ -9,7 +13,6 @@ export default function SignInPage() {
 
     const onFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        alert(`${email}, ${password}`)
         const body = { email, password }
         const response = await fetch(
             "/api/auth/signin",
@@ -27,15 +30,20 @@ export default function SignInPage() {
         }
         if (data.message) {
             alert(data.message)
+            window.location.href = "/"
         }
+    }
+
+    if (user) {
+        return <Navigate replace to='/' />
     }
 
     return (
         <div className="flex justify-center">
             <form onSubmit={onFormSubmit} className="bg-white p-4 shadow flex flex-col gap-2">
                 <div className="text-center text-xl font-semibold mb-4">Sign In</div>
-                <input onChange={onEmailChange} className="border rounded px-4 py-2" placeholder="Email" type="text" name="email" value={email} />
-                <input onChange={onPasswordChange} className="border rounded px-4 py-2" placeholder="Password" type="password" name="password" value={password} />
+                <input autoComplete="off" onChange={onEmailChange} className="border rounded px-4 py-2" placeholder="Email" type="text" name="email" value={email} />
+                <input autoComplete="off" onChange={onPasswordChange} className="border rounded px-4 py-2" placeholder="Password" type="password" name="password" value={password} />
                 <input className="mt-4 bg-blue-600 text-white rounded px-2 py-2" type="submit" value="Sign In" />
             </form>            
         </div>
