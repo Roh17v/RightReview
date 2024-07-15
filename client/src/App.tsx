@@ -4,6 +4,8 @@ import NavBar from './components/NavBar.tsx'
 import SignInPage from './pages/SignInPage.tsx'
 import { AuthProvider } from './contexts/AuthContext.tsx'
 import { useEffect, useState } from 'react'
+import PostReviewPage from './pages/PostReviewPage.tsx'
+import ReviewPage from './pages/ReviewPage.tsx'
 
 const router = createBrowserRouter([
   {
@@ -11,8 +13,16 @@ const router = createBrowserRouter([
     element: <HomePage />
   },
   {
+    path: "/:id",
+    element: <ReviewPage />
+  },
+  {
     path: "/signin",
     element: <SignInPage />
+  },
+  {
+    path: "/post",
+    element: <PostReviewPage />
   }
 ])
 
