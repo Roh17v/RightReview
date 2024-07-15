@@ -1,6 +1,7 @@
 import { Router } from "express"
 import { deleteReviewById, getReviewById, getReviews, createReview } from "../services/review.service"
 import { ReqWithUser } from "../types"
+import { isValidObjectId } from "mongoose"
 
 const router = Router()
 
@@ -28,6 +29,10 @@ router.get("/", async function(req: ReqWithUser, res) {
 
 router.get("/:id", async function(req, res) {
     const id = req.params.id
+    if (!isValidObjectId(id)) {
+        res.json({ error: "Invalid review id" })
+        return
+    }
     const review = await getReviewById(id)
     res.json(review)
 })
