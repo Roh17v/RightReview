@@ -21,12 +21,12 @@ export default function ReviewCard({
                 <div className="size-8 bg-neutral-500 rounded-full"></div>
                 <Rating value={rating} />
             </div>
-            <div className="flex gap-1">
-                <span className="font-semibold">{author.username}</span>
-                reviewed
-                <span className="font-semibold">{product}</span>
-                on
-                <span className="font-semibold">{new Date(createdAt).toDateString()}</span>
+            <div className="">
+                <span className="font-semibold mr-1">{author.username}</span>
+                <span className="text-neutral-600">reviewed</span>
+                <span className="font-semibold mx-1">{product}</span>
+                <span className="text-neutral-600">on</span>
+                <span className="font-semibold ml-1">{new Date(createdAt).toDateString()}</span>
             </div>
             <div>{body}</div>
         </div>
