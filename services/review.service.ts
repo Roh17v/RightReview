@@ -24,7 +24,7 @@ export async function getReviews(filter: GetReviewFilter) {
 }
 
 export async function getReviewById(id: string) {
-    const review = await Review.findById(id)
+    const review = await Review.findById(id).populate("author", { password: false, email: false })
     return review
 }
 
