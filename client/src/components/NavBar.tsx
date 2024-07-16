@@ -54,7 +54,7 @@ export default function NavBar() {
                 </div>
                 <div>
                     {!user && <a className="bg-white rounded px-4 py-1 font-semibold" href="/signin">Sign In</a>}
-                    {user && <button onClick={signOut} className="bg-white rounded px-4 py-1 font-semibold">Sing Out</button>}
+                    {user && <button onClick={signOut} className="bg-white rounded px-4 py-1 font-semibold">Sign Out</button>}
                 </div>
             </div>
         </nav>
