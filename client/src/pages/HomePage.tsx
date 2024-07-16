@@ -33,7 +33,7 @@ export default function HomePage() {
     return (
         <div className="flex flex-col gap-2 px-2">
             <div className="w-full flex gap-2">
-                <form className="flex-1 flex bg-white rounded overflow-hidden shadow">
+                <form className="flex-1 flex bg-white rounded overflow-hidden shadow text-lg py-2">
                     <input name="query" onChange={(event) => setSearchParams(prev=>({ ...prev, query: event.target.value}))} value={searchParams.get("query") || ""} className="outline-none flex-1 px-4 py-1" type="text" placeholder="Search a keyword" />
                     {/* <button className="flex items-center justify-center px-2" type="submit">
                         <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
