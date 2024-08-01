@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useState,useEffect } from "react"
 import { AuthContext } from "../contexts/AuthContext"
 
 export default function NavBar() {
@@ -24,15 +24,37 @@ export default function NavBar() {
         }
     }
 
+    const [hidden,setHidden] = useState(false);
+    const [prevScrollPos,setPrevScrollPos] = useState(window.scrollY);
+
+    const handleScroll = () => {
+        const currentScrollPos = window.scrollY;
+        if(currentScrollPos > 100)
+        {
+            const visible = prevScrollPos > currentScrollPos;
+            setHidden(!visible);
+            setPrevScrollPos(currentScrollPos);
+        }
+        else
+        {
+            setHidden(false);
+        }
+      };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [prevScrollPos, hidden, handleScroll]);
+
     return (
-        <nav className="w-full flex justify-center px-4 py-2 bg-blue-600">
-            <div className="w-full max-w-2xl flex items-center justify-between">
+        <nav className={`w-full flex sm:px-10 px-3 py-3 bg-blue-600 fixed transition-[top] duration-700 ${hidden ? 'top-[-50px]' : 'top-0'}`} >
+            <div className="w-full flex justify-between">
                 <div>
-                    <a href="/" className="text-lg font-semibold text-white">RightReview</a>
+                    <a href="/" className="text-xl font-semibold text-white">RightReview&#10003;</a>
                 </div>
                 <div>
                     {!user && <a className="bg-white rounded px-4 py-1 font-semibold" href="/signin">Sign In</a>}
-                    {user && <button onClick={signOut} className="bg-white rounded px-4 py-1 font-semibold">Sing Out</button>}
+                    {user && <button onClick={signOut} className="bg-white rounded px-4 py-1 font-semibold">Sign Out</button>}
                 </div>
             </div>
         </nav>

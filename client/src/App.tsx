@@ -44,8 +44,8 @@ function App() {
   return (
     <AuthProvider value={{ user }}>
       <NavBar />
-      <div className="w-full flex justify-center py-2">
-        <div className="w-full max-w-2xl">
+      <div className="w-full flex justify-center py-2 mt-16">
+        <div className="w-full px-9">
           <RouterProvider router={router} />
         </div>
       </div>
