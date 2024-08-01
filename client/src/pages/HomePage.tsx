@@ -83,7 +83,7 @@ export default function HomePage() {
           {currentReviews.map((review) => (
             <li key={review._id}>
               <a href={`/${review._id}`}>
-                <ReviewCard {...review} />
+                <ReviewCard {...review} hoverEffect />
               </a>
             </li>
           ))}
