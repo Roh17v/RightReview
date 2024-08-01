@@ -38,7 +38,6 @@ export default function HomePage() {
     (currentPage - 1) * reviewPerPage,
     currentPage * reviewPerPage
   );
-  console.log(currentReviews);
   const handlePageChange = (page: number) => setCurrentPage(page);
 
   return (
@@ -80,7 +79,7 @@ export default function HomePage() {
         </a>
       </div>
       {currentReviews.length > 0 ? (
-        <ul className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-2">
+        <ul className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-3">
           {currentReviews.map((review) => (
             <li key={review._id}>
               <a href={`/${review._id}`}>
