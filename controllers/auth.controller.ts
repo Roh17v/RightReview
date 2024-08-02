@@ -4,7 +4,6 @@ import { createNewUser, getUserByEmail } from "../services/user.service";
 import { sign } from "jsonwebtoken";
 import { AUTH_KEY } from "../constants";
 import { ReqWithUser } from "../types";
-import { MongoServerError } from "mongodb";
 
 const router = Router();
 
