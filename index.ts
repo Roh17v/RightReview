@@ -24,6 +24,8 @@ app.use("/api/review", reviewRouter)
 app.use("/assets", express.static(path.join(__dirname, "..", "client", "dist", "assets"), { redirect: false }))
 app.use("*", express.static(path.join(__dirname, "..", "client", "dist")))
 
+console.log(__dirname)
+
 mongoose.connect(process.env.DB_URI!)
 .then(function(){
     console.log("Connected to mongodb database")
