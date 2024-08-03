@@ -6,6 +6,7 @@ import cookieParser from  "cookie-parser"
 import authRouter from "./controllers/auth.controller"
 import reviewRouter from "./controllers/review.controller"
 import { parseAuthCookie } from "./middlewares/auth.middleware"
+import path from "path"
 
 config()
 
@@ -17,8 +18,11 @@ app.use(cookieParser())
 
 app.use(parseAuthCookie())
 
-app.use("/auth", authRouter)
-app.use("/review", reviewRouter)
+app.use("/api/auth", authRouter)
+app.use("/api/review", reviewRouter)
+
+app.use("/assets", express.static(path.join(__dirname, "client", "dist", "assets"), { redirect: false }))
+app.use("*", express.static(path.join(__dirname, "client", "dist")))
 
 mongoose.connect(process.env.DB_URI!)
 .then(function(){
