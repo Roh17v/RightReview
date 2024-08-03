@@ -43,8 +43,9 @@ export default function Pagination({
           </svg>
         </button>
       </div>
-      {pages.map((page) => (
+      {pages.map((page, index) => (
         <div
+          key={index}
           className={`border border-solid border-gray-400 ${
             currentPage == page ? "" : "opacity-50"
           }`}

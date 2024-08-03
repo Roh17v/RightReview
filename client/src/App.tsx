@@ -1,45 +1,50 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import HomePage from './pages/HomePage.tsx'
-import NavBar from './components/NavBar.tsx'
-import SignInPage from './pages/SignInPage.tsx'
-import { AuthProvider } from './contexts/AuthContext.tsx'
-import { useEffect, useState } from 'react'
-import PostReviewPage from './pages/PostReviewPage.tsx'
-import ReviewPage from './pages/ReviewPage.tsx'
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import HomePage from "./pages/HomePage.tsx";
+import NavBar from "./components/NavBar.tsx";
+import SignInPage from "./pages/SignInPage.tsx";
+import { AuthProvider } from "./contexts/AuthContext.tsx";
+import { useEffect, useState } from "react";
+import PostReviewPage from "./pages/PostReviewPage.tsx";
+import ReviewPage from "./pages/ReviewPage.tsx";
+import SignUp from "./pages/SignUpPage.tsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />
+    element: <HomePage />,
   },
   {
     path: "/:id",
-    element: <ReviewPage />
+    element: <ReviewPage />,
   },
   {
     path: "/signin",
-    element: <SignInPage />
+    element: <SignInPage />,
   },
   {
     path: "/post",
-    element: <PostReviewPage />
-  }
-])
+    element: <PostReviewPage />,
+  },
+  {
+    path: "/signup",
+    element: <SignUp />,
+  },
+]);
 
 function App() {
-  const [user,  setUser] = useState<any>(null)
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     const fetchUser = async () => {
-      const response = await fetch("/api/auth/user")
-      const data = await response.json()
+      const response = await fetch("/api/auth/user");
+      const data = await response.json();
       if (data) {
-        setUser(data)
+        setUser(data);
       }
-    }
-    fetchUser()
-    return () => setUser(null)
-  }, [])
+    };
+    fetchUser();
+    return () => setUser(null);
+  }, []);
 
   return (
     <AuthProvider value={{ user }}>
@@ -50,7 +55,7 @@ function App() {
         </div>
       </div>
     </AuthProvider>
-  )
+  );
 }
 
-export default App
+export default App;
