@@ -21,8 +21,8 @@ app.use(parseAuthCookie())
 app.use("/api/auth", authRouter)
 app.use("/api/review", reviewRouter)
 
-app.use("/assets", express.static(path.join(__dirname, "client", "dist", "assets"), { redirect: false }))
-app.use("*", express.static(path.join(__dirname, "client", "dist")))
+app.use("/assets", express.static(path.join(__dirname, "..", "client", "dist", "assets"), { redirect: false }))
+app.use("*", express.static(path.join(__dirname, "..", "client", "dist")))
 
 mongoose.connect(process.env.DB_URI!)
 .then(function(){
